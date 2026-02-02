@@ -5,6 +5,7 @@ const closeIcon = document.getElementById("close-icon")
 const form = document.getElementById("form")
 const linkToItem = document.getElementById("link-to-item")
 const descriptionOfItem = document.getElementById("description-of-item")
+const itemSection = document.getElementById("items-section")
 
 // Reveal and hide modal overlay
 addItemButton.addEventListener("click", revealModalOverlay)
@@ -51,7 +52,7 @@ function fetchItems(){
     if(localStorage.getItem("itemsOfResearch")){
         researchItems = JSON.parse(localStorage.getItem("itemsOfResearch"))
     }
-    
+    printItemsOnUI()
 }
 fetchItems()
 
@@ -62,5 +63,31 @@ function printItemsOnUI(){
         let itemNameTOPRINT = item.itemNAME
         let itemLinkTOPRINT = item.itemLINK
         let itemDescrTOPRINT = item.itemDESCRIPTION
+
+        // HTML Section
+        let researchItemDiv = document.createElement("div")
+        researchItemDiv.classList.add("research-item")
+
+        let titleAndDeleteContainerDiv = document.createElement("div")
+        titleAndDeleteContainerDiv.classList.add("title-and-delete-container")
+
+        let itemTitle = document.createElement("a")
+        itemTitle.setAttribute("href", `${itemLinkTOPRINT}`)
+        itemTitle.setAttribute("target", "_blank")
+        itemTitle.textContent = itemNameTOPRINT
+
+        let deleteIcon = document.createElement("i")
+        deleteIcon.classList.add("fa-solid", "fa-trash")
+
+        let descriptionOfItemDiv = document.createElement("div")
+        descriptionOfItemDiv.classList.add("description-of-item")
+
+        let descriptionText = document.createElement("p")
+        descriptionText.textContent = itemDescrTOPRINT
+
+        descriptionOfItemDiv.append(descriptionText)
+        titleAndDeleteContainerDiv.append(itemTitle, deleteIcon)
+        researchItemDiv.append(titleAndDeleteContainerDiv, descriptionOfItemDiv)
+        itemSection.append(researchItemDiv)
     })
 }
