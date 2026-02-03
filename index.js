@@ -85,9 +85,15 @@ function printItemsOnUI(){
         let descriptionText = document.createElement("p")
         descriptionText.textContent = itemDescrTOPRINT
 
+        // Appending
         descriptionOfItemDiv.append(descriptionText)
         titleAndDeleteContainerDiv.append(itemTitle, deleteIcon)
         researchItemDiv.append(titleAndDeleteContainerDiv, descriptionOfItemDiv)
         itemSection.append(researchItemDiv)
     })
+}
+
+// Delete
+function deleteItem(){
+    
 }
