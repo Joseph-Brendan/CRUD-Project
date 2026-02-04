@@ -78,6 +78,7 @@ function printItemsOnUI(){
 
         let deleteIcon = document.createElement("i")
         deleteIcon.classList.add("fa-solid", "fa-trash")
+        deleteIcon.setAttribute("onclick", `deleteItem('${itemLinkTOPRINT}')`)
 
         let descriptionOfItemDiv = document.createElement("div")
         descriptionOfItemDiv.classList.add("description-of-item")
@@ -94,6 +95,10 @@ function printItemsOnUI(){
 }
 
 // Delete
-function deleteItem(){
-    
+function deleteItem(researchLink){
+    researchItems.forEach(function(item, index){
+        if(item.itemLINK === researchLink){
+            researchItems.splice(index, 1)
+        }
+    })
 }
