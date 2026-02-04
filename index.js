@@ -59,6 +59,7 @@ fetchItems()
 
 // Print Data from LS on the UI
 function printItemsOnUI(){
+    itemSection.innerHTML = ` `
     researchItems.forEach(function(item){
         let itemNameTOPRINT = item.itemNAME
         let itemLinkTOPRINT = item.itemLINK
@@ -101,4 +102,8 @@ function deleteItem(researchLink){
             researchItems.splice(index, 1)
         }
     })
+    // Updating local storage
+    localStorage.setItem("itemsOfResearch",JSON.stringify(researchItems) )
+    // Fetch Items from local storage
+    fetchItems()
 }
